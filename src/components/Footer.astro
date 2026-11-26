@@ -1,0 +1,68 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-logo">
+      <span class="logo-bracket">&lt;</span>JDev<span class="logo-bracket">/&gt;</span>
+    </div>
+    <p class="footer-copy">
+      © {year} · Hecho con ☕ y
+      <a href="https://astro.build" target="_blank" rel="noopener">Astro</a>
+    </p>
+    <a href="#hero" class="back-top" title="Volver arriba">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M18 15l-6-6-6 6"/>
+      </svg>
+    </a>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--border);
+    padding-block: 1.5rem;
+  }
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .footer-logo {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    color: var(--accent2);
+    font-size: 0.95rem;
+  }
+  .logo-bracket { color: var(--accent); }
+  .footer-copy {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+  }
+  .footer-copy a {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+  .back-top {
+    width: 36px; height: 36px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    transition: var(--transition);
+  }
+  .back-top:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+  @media (max-width: 540px) {
+    .footer-inner { flex-direction: column; text-align: center; }
+  }
+</style>
+

@@ -1,0 +1,340 @@
+---
+const projects = [
+  {
+    title: "E-Commerce Full Stack",
+    description:
+      "Tienda online completa con catálogo de productos, carrito de compras, pagos con Stripe, panel de administración y notificaciones en tiempo real.",
+    tags: ["Next.js", "TypeScript", "PostgreSQL", "Stripe", "Tailwind"],
+    color: "#6366f1",
+    emoji: "🛒",
+    github: "https://github.com/tuusuario/ecommerce",
+    demo: "https://ecommerce-demo.vercel.app",
+    featured: true,
+    status: "Producción",
+  },
+  {
+    title: "Task Manager App",
+    description:
+      "Aplicación de gestión de tareas con tableros Kanban, colaboración en tiempo real vía WebSockets, roles de usuario y estadísticas de productividad.",
+    tags: ["React", "Node.js", "Socket.io", "MongoDB", "Redux"],
+    color: "#a78bfa",
+    emoji: "📋",
+    github: "https://github.com/tuusuario/taskmanager",
+    demo: "https://taskmanager-demo.vercel.app",
+    featured: true,
+    status: "Producción",
+  },
+  {
+    title: "API REST de Clima",
+    description:
+      "Microservicio de datos meteorológicos que agrega información de múltiples fuentes, con caché Redis, rate limiting y documentación OpenAPI/Swagger.",
+    tags: ["Python", "FastAPI", "Redis", "Docker", "PostgreSQL"],
+    color: "#22d3ee",
+    emoji: "🌤️",
+    github: "https://github.com/tuusuario/weather-api",
+    demo: "https://weather-api.onrender.com/docs",
+    featured: false,
+    status: "Estable",
+  },
+  {
+    title: "Portfolio Personal v1",
+    description:
+      "Primera versión del portafolio personal construido con HTML, CSS y JavaScript vanilla. Responsive, accesible y con modo oscuro nativo.",
+    tags: ["HTML", "CSS", "JavaScript", "Figma"],
+    color: "#4ade80",
+    emoji: "🎨",
+    github: "https://github.com/tuusuario/portfolio-v1",
+    demo: "https://tuusuario.github.io",
+    featured: false,
+    status: "Archivado",
+  },
+  {
+    title: "Blog con CMS Headless",
+    description:
+      "Blog técnico integrado con Contentful como CMS headless. SSG con Astro para máximo rendimiento, SEO optimizado y comentarios con Giscus.",
+    tags: ["Astro", "Contentful", "TypeScript", "MDX", "Vercel"],
+    color: "#fbbf24",
+    emoji: "✍️",
+    github: "https://github.com/tuusuario/blog",
+    demo: "https://blog-demo.vercel.app",
+    featured: true,
+    status: "Producción",
+  },
+  {
+    title: "Dashboard Analytics",
+    description:
+      "Panel de analíticas con gráficos interactivos, filtros avanzados, exportación a CSV/PDF y sistema de alertas configurables por el usuario.",
+    tags: ["React", "D3.js", "Node.js", "PostgreSQL", "Chart.js"],
+    color: "#f472b6",
+    emoji: "📊",
+    github: "https://github.com/tuusuario/dashboard",
+    demo: "https://dashboard-demo.vercel.app",
+    featured: false,
+    status: "Beta",
+  },
+];
+
+const statusColors: Record<string, string> = {
+  Producción: "#4ade80",
+  Estable:    "#fbbf24",
+  Beta:       "#fb923c",
+  Archivado:  "#94a3b8",
+};
+---
+
+<section class="projects" id="proyectos">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">Lo que he construido</p>
+      <h2 class="section-title">Proyectos <span>destacados</span></h2>
+      <p class="section-subtitle">
+        Una selección de proyectos que muestran mi capacidad técnica y creatividad.
+      </p>
+    </div>
+
+    <!-- Filter tabs -->
+    <div class="filter-tabs" id="filter-tabs">
+      <button class="filter-btn active" data-filter="all">Todos</button>
+      <button class="filter-btn" data-filter="featured">⭐ Destacados</button>
+    </div>
+
+    <!-- Projects grid -->
+    <div class="projects-grid" id="projects-grid">
+      {projects.map((p) => (
+        <article
+          class={`project-card ${p.featured ? "featured" : ""}`}
+          style={`--card-color: ${p.color}`}
+          data-featured={String(p.featured)}
+        >
+          <!-- Top -->
+          <div class="card-top">
+            <span class="project-emoji">{p.emoji}</span>
+            <div class="card-badges">
+              {p.featured && <span class="badge-featured">⭐ Destacado</span>}
+              <span
+                class="badge-status"
+                style={`color: ${statusColors[p.status] ?? "#94a3b8"}`}
+              >
+                <span class="status-dot" style={`background: ${statusColors[p.status] ?? "#94a3b8"}`}></span>
+                {p.status}
+              </span>
+            </div>
+          </div>
+
+          <!-- Body -->
+          <h3 class="project-title">{p.title}</h3>
+          <p class="project-desc">{p.description}</p>
+
+          <!-- Tags -->
+          <div class="project-tags">
+            {p.tags.map(t => <span class="tag">{t}</span>)}
+          </div>
+
+          <!-- Links -->
+          <div class="project-links">
+            <a href={p.github} target="_blank" rel="noopener" class="link-btn link-gh">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.03-1.61-4.03-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02.004 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              GitHub
+            </a>
+            <a href={p.demo} target="_blank" rel="noopener" class="link-btn link-demo">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+                <polyline points="15,3 21,3 21,9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+              Demo
+            </a>
+          </div>
+
+          <!-- Glow border on hover -->
+          <div class="card-glow" aria-hidden="true"></div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>(".filter-btn");
+  const cards = document.querySelectorAll<HTMLElement>(".project-card");
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+      const filter = tab.dataset.filter;
+      cards.forEach(card => {
+        const show =
+          filter === "all" ||
+          (filter === "featured" && card.dataset.featured === "true");
+        card.style.display = show ? "" : "none";
+      });
+    });
+  });
+</script>
+
+<style>
+  .projects {
+    padding-block: 7rem;
+    background: linear-gradient(to bottom, transparent, rgba(99,102,241,0.03), transparent);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+  .section-subtitle { margin-inline: auto; }
+
+  /* ── Filters ── */
+  .filter-tabs {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 3rem;
+  }
+  .filter-btn {
+    padding: 0.4rem 1.1rem;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .filter-btn:hover,
+  .filter-btn.active {
+    background: rgba(99,102,241,0.12);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* ── Grid ── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  /* ── Card ── */
+  .project-card {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: transform var(--transition), border-color var(--transition);
+    overflow: hidden;
+  }
+  .project-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--card-color);
+  }
+  .project-card.featured {
+    border-color: rgba(99,102,241,0.3);
+  }
+
+  /* Glow overlay */
+  .card-glow {
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    background: radial-gradient(400px at 50% 0%, var(--card-color), transparent 70%);
+    transition: opacity var(--transition);
+    mix-blend-mode: screen;
+  }
+  .project-card:hover .card-glow { opacity: 0.07; }
+
+  /* ── Top row ── */
+  .card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+  .project-emoji { font-size: 2rem; }
+  .card-badges {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .badge-featured {
+    background: rgba(99,102,241,0.14);
+    border: 1px solid rgba(99,102,241,0.3);
+    color: var(--accent2);
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 100px;
+    font-weight: 600;
+  }
+  .badge-status {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.72rem;
+    font-weight: 500;
+  }
+  .status-dot { width: 6px; height: 6px; border-radius: 50%; }
+
+  /* ── Title / Desc ── */
+  .project-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .project-desc {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  /* ── Tags ── */
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .tag {
+    background: var(--bg-card2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.2rem 0.55rem;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+  }
+
+  /* ── Links ── */
+  .project-links {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.25rem;
+  }
+  .link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.9rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: var(--transition);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+  }
+  .link-btn:hover { color: var(--text); border-color: var(--card-color); }
+  .link-gh:hover  { background: rgba(255,255,255,0.04); }
+  .link-demo:hover { background: rgba(255,255,255,0.04); }
+</style>
+

@@ -1,0 +1,225 @@
+---
+const socials = [
+  {
+    name: "GitHub",
+    url: "https://github.com/tuusuario",
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.03-1.61-4.03-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02.004 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>`,
+  },
+  {
+    name: "LinkedIn",
+    url: "https://linkedin.com/in/tuusuario",
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.86-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.33V9h3.41v1.56h.05c.47-.9 1.63-1.84 3.35-1.84 3.58 0 4.24 2.36 4.24 5.42v6.31zM5.34 7.43a2.07 2.07 0 110-4.14 2.07 2.07 0 010 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45C23.2 24 24 23.23 24 22.27V1.73C24 .77 23.2 0 22.22 0z"/></svg>`,
+  },
+  {
+    name: "Twitter / X",
+    url: "https://twitter.com/tuusuario",
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`,
+  },
+  {
+    name: "Email",
+    url: "mailto:tu@email.com",
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 01-2.06 0L2 7"/></svg>`,
+  },
+];
+---
+
+<section class="contact" id="contacto">
+  <div class="container">
+    <div class="contact-inner">
+      <!-- Left: CTA copy -->
+      <div class="contact-copy">
+        <p class="section-label">¿Hablamos?</p>
+        <h2 class="section-title">¿Tienes un <span>proyecto</span> en mente?</h2>
+        <p class="contact-desc">
+          Estoy disponible para proyectos freelance, posiciones full-time y colaboraciones
+          open-source. Escríbeme y lo conversamos ☕
+        </p>
+
+        <div class="contact-info">
+          <a href="mailto:tu@email.com" class="info-item">
+            <span class="info-icon">📧</span>
+            <span>tu@email.com</span>
+          </a>
+          <a href="https://linkedin.com/in/tuusuario" class="info-item" target="_blank" rel="noopener">
+            <span class="info-icon">💼</span>
+            <span>linkedin.com/in/tuusuario</span>
+          </a>
+          <div class="info-item">
+            <span class="info-icon">📍</span>
+            <span>Tu Ciudad, País</span>
+          </div>
+        </div>
+
+        <div class="social-links">
+          {socials.map(s => (
+            <a href={s.url} target="_blank" rel="noopener" class="social-btn" title={s.name}>
+              <Fragment set:html={s.icon} />
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Right: form -->
+      <form class="contact-form" id="contact-form" novalidate>
+        <div class="form-row">
+          <div class="field">
+            <label for="name">Nombre</label>
+            <input id="name" type="text" placeholder="Tu nombre" required />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="tu@email.com" required />
+          </div>
+        </div>
+        <div class="field">
+          <label for="subject">Asunto</label>
+          <input id="subject" type="text" placeholder="¿De qué se trata?" />
+        </div>
+        <div class="field">
+          <label for="message">Mensaje</label>
+          <textarea id="message" rows="5" placeholder="Cuéntame sobre tu proyecto..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary submit-btn">
+          Enviar mensaje
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22,2 15,22 11,13 2,9"/>
+          </svg>
+        </button>
+        <p class="form-note">📌 Respondo en menos de 24 horas.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById("contact-form") as HTMLFormElement | null;
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const btn = form.querySelector<HTMLButtonElement>(".submit-btn");
+    if (btn) {
+      btn.textContent = "✅ ¡Mensaje enviado!";
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = "Enviar mensaje";
+        btn.disabled = false;
+        form.reset();
+      }, 3000);
+    }
+  });
+</script>
+
+<style>
+  .contact {
+    padding-block: 7rem;
+    position: relative;
+  }
+  .contact::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 100%, rgba(99,102,241,0.08), transparent);
+    pointer-events: none;
+  }
+
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  /* ── Left ── */
+  .contact-desc {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .contact-info { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem; }
+  .info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    transition: color var(--transition);
+  }
+  a.info-item:hover { color: var(--accent); }
+  .info-icon { font-size: 1rem; }
+
+  .social-links { display: flex; gap: 0.75rem; }
+  .social-btn {
+    width: 42px; height: 42px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    transition: var(--transition);
+  }
+  .social-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(99,102,241,0.08);
+    transform: translateY(-2px);
+  }
+
+  /* ── Form ── */
+  .contact-form {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .field { display: flex; flex-direction: column; gap: 0.4rem; }
+  label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.03em;
+  }
+  input, textarea {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.65rem 0.9rem;
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    outline: none;
+    resize: vertical;
+    transition: border-color var(--transition), box-shadow var(--transition);
+  }
+  input::placeholder, textarea::placeholder { color: var(--text-dim); }
+  input:focus, textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
+  }
+
+  .submit-btn { align-self: flex-start; }
+  .form-note {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-top: -0.25rem;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 860px) {
+    .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+

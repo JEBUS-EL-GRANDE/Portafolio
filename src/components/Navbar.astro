@@ -1,0 +1,147 @@
+---
+const links = [
+  { label: "Inicio",       href: "#hero" },
+  { label: "Tecnologías",  href: "#tecnologias" },
+  { label: "Proyectos",    href: "#proyectos" },
+  { label: "Contacto",     href: "#contacto" },
+];
+---
+
+<header class="navbar">
+  <div class="container nav-inner">
+    <a href="#hero" class="logo">
+      <span class="logo-bracket">&lt;</span>
+      JDev
+      <span class="logo-bracket">/&gt;</span>
+    </a>
+
+    <nav class="nav-links">
+      {links.map(l => (
+        <a href={l.href} class="nav-link">{l.label}</a>
+      ))}
+    </nav>
+
+    <a href="#contacto" class="btn btn-primary nav-cta">Contáctame</a>
+
+    <!-- Mobile hamburger -->
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    {links.map(l => (
+      <a href={l.href} class="mobile-link">{l.label}</a>
+    ))}
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById("hamburger");
+  const menu = document.getElementById("mobile-menu");
+  btn?.addEventListener("click", () => {
+    menu?.classList.toggle("open");
+    btn.classList.toggle("active");
+  });
+  // close on link click
+  menu?.querySelectorAll("a").forEach(a =>
+    a.addEventListener("click", () => {
+      menu.classList.remove("open");
+      btn?.classList.remove("active");
+    })
+  );
+</script>
+
+<style>
+  .navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    transition: var(--transition);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    height: 64px;
+  }
+
+  .logo {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent2);
+    white-space: nowrap;
+  }
+  .logo-bracket { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 0.25rem;
+    margin-left: auto;
+  }
+
+  .nav-link {
+    padding: 0.4rem 0.9rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: var(--transition);
+  }
+  .nav-link:hover { color: var(--text); background: var(--bg-card); }
+
+  .nav-cta { font-size: 0.85rem; padding: 0.5rem 1.1rem; }
+
+  /* Hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    margin-left: auto;
+  }
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: var(--transition);
+  }
+  .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Mobile menu */
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    padding: 0.75rem 1.5rem 1rem;
+    border-top: 1px solid var(--border);
+    gap: 0.25rem;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-link {
+    padding: 0.6rem 0.75rem;
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    transition: var(--transition);
+  }
+  .mobile-link:hover { color: var(--text); background: var(--bg-card); }
+
+  @media (max-width: 720px) {
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+  }
+</style>
+
